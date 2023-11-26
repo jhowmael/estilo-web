@@ -1,0 +1,19 @@
+<td class="actions text-center">
+    <?= $this->Html->link(
+        '<i class="far fa-eye"></i> ' . __('Ver'),
+        ['controller' => $controller, 'action' => 'view', $entity->id],
+        ['escape' => false, 'class' => 'btn btn-info btn-sm']
+    ) ?>
+
+    <?= $this->Html->link(
+        '<i class="far fa-edit"></i> ' . __('Editar'),
+        ['controller' => $controller, 'action' => 'edit', $entity->id],
+        ['escape' => false, 'class' => 'btn btn-warning btn-sm']
+    ) ?>
+
+    <?= $this->Form->postLink(
+        '<i class="far fa-trash-alt"></i> ' . __('Deletar'),
+        ['controller' => $controller, 'action' => 'delete', $entity->id],
+        ['confirm' => __('Are you sure you want to delete # {0}?', $entity->id), 'escape' => false, 'class' => 'btn btn-danger btn-sm']
+    ) ?>
+</td>
