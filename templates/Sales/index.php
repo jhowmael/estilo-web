@@ -1,7 +1,14 @@
-<?= $this->element('add_box', ['controller' => 'Sales', 'text' => 'Venda']) ?>
-<?= $this->element('filter_box', ['controller' => 'Sales', 'text' => 'Vendas']) ?>
-
-<h3> <i class="fa-solid fa-bag-shopping"></i> <?= ' ' . __('Vendas') ?></h3>
+<table class="table">
+    <tr>
+        <th>
+            <h3> <i class="fa-solid fa-bag-shopping"></i> <?= ' ' . __('Vendas') ?></h3>
+        </th>
+        <th class="align-right">
+            <?= $this->element('add_box', ['controller' => 'Sales', 'text' => 'Venda']) ?>
+            <?= $this->element('filter_box', ['controller' => 'Sales', 'text' => 'Vendas']) ?>
+        </th>
+    </tr>
+</table>
 
 <div class="row">
     <div class="col-md-12">
@@ -26,7 +33,9 @@
                         <td><?= h($sale->customer_phone) ?></td>
                         <td><?= h($sale->paid) ?></td>
                         <td><?= $this->element('display_status', ['status' => $sale->status]) ?></td>
-                        <?= $this->element('actions', ['controller' => 'Sales', 'entity' => $sale]) ?>
+                        <td class="actions text-center">
+                            <?= $this->element('actions', ['controller' => 'Sales', 'entity' => $sale]) ?>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

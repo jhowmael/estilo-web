@@ -36,8 +36,7 @@ class SalesTable extends Table
     {
         $validator
             ->numeric('total_value')
-            ->requirePresence('total_value', 'create')
-            ->notEmptyString('total_value');
+            ->allowEmptyString('total_value ');
 
         $validator
             ->scalar('customer_name')
@@ -120,20 +119,8 @@ class SalesTable extends Table
         ])->toArray();
 
         /*
-
         if (!empty($sale->canceled)) {
             $status = 'CANCELEADO';
-
-            if ($sale->status != $status) {
-                $sale->status = $status;
-                return $this->save($sale);
-            }
-        }
-                */
-
-        /*
-        if (!empty($sale->paid) && empty($$sale->canceled)) {
-            $status = 'PAGO';
 
             if ($sale->status != $status) {
                 $sale->status = $status;
@@ -174,6 +161,21 @@ class SalesTable extends Table
 
     public function afterSave(EventInterface $event, EntityInterface $entity, ArrayObject $options)
     {
+        if ($entity->isDirty('paid')) {
+            $saleProducts = $this->SaleProducts->find('all', [
+                'conditions' => ['sale_id' => $entity->id]
+            ])->toArray();
+
+            foreach ($saleProducts as $saleProduct) {
+                $product = $this->SaleProducts->Products->find('all', [
+                    'conditions' => ['id' => $saleProduct->product_id]
+                ])->first();
+
+                $product->quantity = $product->quantity - 1;
+                $this->SaleProducts->Products->save($product);
+            }
+        }
+
         return $this->updateStatus($entity->id);
     }
 }

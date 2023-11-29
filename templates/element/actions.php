@@ -1,4 +1,3 @@
-<td class="actions text-center">
     <?= $this->Html->link(
         '<i class="far fa-eye"></i> ' . __('Ver'),
         ['controller' => $controller, 'action' => 'view', $entity->id],
@@ -16,4 +15,3 @@
         ['controller' => $controller, 'action' => 'delete', $entity->id],
         ['confirm' => __('Are you sure you want to delete # {0}?', $entity->id), 'escape' => false, 'class' => 'btn btn-danger btn-sm']
     ) ?>
-</td>

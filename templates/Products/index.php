@@ -1,8 +1,14 @@
-<?= $this->element('add_box', ['controller' => 'Products', 'text' => 'Produto']) ?>
-<?= $this->element('filter_box', ['controller' => 'Products', 'text' => 'Produtos']) ?>
-
-<h3> <i class="fa-solid fa-shirt"></i> <?= ' ' . __('Produtos') ?></h3>
-
+<table class="table">
+    <tr>
+        <th>
+            <h3> <i class="fa-solid fa-shirt"></i> <?= ' ' . __('Produtos') ?></h3>
+        </th>
+        <th class="align-right">
+            <?= $this->element('add_box', ['controller' => 'Products', 'text' => 'Produto']) ?>
+            <?= $this->element('filter_box', ['controller' => 'Products', 'text' => 'Produtos']) ?>
+        </th>
+    </tr>
+</table>
 <div class="row">
     <div class="col-md-12">
         <table class="table table-hover no-margin">
@@ -35,7 +41,11 @@
                     <td><?= h($product->gender) ?></td>
                     <td><?= $product->quantity === null ? '' : $this->Number->format($product->quantity) ?></td>
                     <td><?= $this->element('display_status', ['status' => $product->status]) ?></td>
-                    <?= $this->element('actions', ['controller' => 'Products', 'entity' => $product]) ?>
+                    <td class="actions text-center">
+                        <?= $this->element('action_view', ['controller' => 'Products', 'entity' => $product]) ?>
+                        <?= $this->element('action_edit', ['controller' => 'Products', 'entity' => $product]) ?>
+                        <?= $this->element('action_cancel', ['controller' => 'Products', 'entity' => $product]) ?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </table>

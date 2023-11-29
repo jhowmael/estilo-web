@@ -1,20 +1,27 @@
 <div class="row">
     <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>
+                    <h3 class="mb-4"><i class="fa-solid fa-shirt"></i> <?= ' ' . __('Adicionar Produtos') ?></h3>
+                </th>
+                <th class="align-right">
+                    <?= $this->element('action_index') ?>
+                </th>
+            </tr>
+        </table>
         <?= $this->Form->create($saleProduct) ?>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <?= $this->Form->control('product_id', [
-                    'options' => $products->toArray(),
+                    'options' => $products,
                     'label' => 'Produto',
                     'class' => 'form-control'
                 ]); ?>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <?= $this->Form->control('discount_value', ['label' => 'Desconto', 'class' => 'form-control']); ?>
-            </div>
-            <div class="col-md-4">
-                <?= $this->Form->control('total_value', ['label' => 'Valor Total', 'class' => 'form-control']); ?>
             </div>
         </div>
         <div class="row">
@@ -35,8 +42,7 @@
                 <th><?= __('Desconto') ?></th>
                 <th><?= __('Valor Total') ?></th>
                 <th><?= __('Situação') ?></th>
-                <th class="actions text-center"><?= __('Visualizar') ?></th>
-                <th class="actions text-center"><?= __('Deletar') ?></th>
+                <th class="actions text-center"><?= __('Ações') ?></th>
             </tr>
             <?php foreach ($saleProducts as $saleProduct) : ?>
                 <tr>
@@ -44,8 +50,10 @@
                     <td><?= h($saleProduct->discount_value) ?></td>
                     <td><?= h($saleProduct->total_value) ?></td>
                     <td><?= $this->element('display_status', ['status' => $saleProduct->status]) ?></td>
-                    <?= $this->element('action_view', ['controller' => 'SaleProducts', 'entity' => $saleProduct]) ?>
-                    <?= $this->element('action_delete', ['controller' => 'SaleProducts', 'entity' => $saleProduct]) ?>
+                    <td class="actions text-center">
+                        <?= $this->element('action_view', ['controller' => 'SaleProducts', 'entity' => $saleProduct]) ?>
+                        <?= $this->element('action_delete', ['controller' => 'SaleProducts', 'entity' => $saleProduct]) ?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </table>
@@ -59,7 +67,7 @@
                 <th>
                     <h3> <i class="fa-solid fa-bag-shopping"></i> <?= ' ' . __('Venda') ?></h3>
                 </th>
-                <th>
+                <th class="align-right">
                     <?= $this->element('delete_box', ['controller' => 'Sales', 'text' => 'Venda', 'entity' => $sale]) ?>
                     <?= $this->element('edit_box', ['controller' => 'Sales', 'text' => 'Venda', 'entity' => $sale]) ?>
                     <?= $this->element('view_box', ['controller' => 'Sales', 'text' => 'Venda', 'entity' => $sale]) ?>

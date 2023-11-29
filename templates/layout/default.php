@@ -4,8 +4,34 @@ $cakeDescription = 'MHS';
 <!DOCTYPE html>
 <html>
 <style>
-    .nav-link:hover {
-        color: red !important;
+    th a,
+    td a,
+    a {
+        text-decoration: none;
+    }
+
+    .navbar-nav a.nav-link {
+        color: black;
+    }
+
+    .navbar-nav a.nav-link:hover {
+        color: blue;
+    }
+
+    .navbar-nav a.nav-link.active {
+        color: blue;
+    }
+
+    td a {
+        text-decoration: none;
+    }
+
+    .align-right {
+        text-align: right;
+    }
+
+    .align-left {
+        text-align: left;
     }
 
     body {
@@ -39,13 +65,10 @@ $cakeDescription = 'MHS';
     </title>
 
     <?= $this->Html->meta('favicon.ico', 'img/icon.ico', array('type' => 'icon')) ?>
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZwT" crossorigin="anonymous">
 
     <?= $this->Html->css([
         'bootstrap.min',
-        'adminlte'
     ])
     ?>
 
@@ -56,11 +79,14 @@ $cakeDescription = 'MHS';
 
 <body>
     <div class="row">
-        <div class="col-md-2">
-            <?= $this->element('aside') ?>
-        </div>
-        <div class="col-md-10">
+        <div class="col-12">
             <?= $this->element('navbar') ?>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12">
             <br>
             <div class="container shadow rounded">
                 <br>
@@ -75,9 +101,9 @@ $cakeDescription = 'MHS';
         <strong>Copyright © 2023 Desenvolvido por: Jonatan Ismael</strong>
     </footer>
     <script src="https://kit.fontawesome.com/821b65200f.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>

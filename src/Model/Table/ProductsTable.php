@@ -85,8 +85,8 @@ class ProductsTable extends Table
             ->allowEmptyString('note');
 
         $validator
-            ->dateTime('deleted')
-            ->allowEmptyDateTime('deleted');
+            ->dateTime('canceled')
+            ->allowEmptyDateTime('canceled');
 
         $validator
             ->scalar('status')
@@ -124,10 +124,35 @@ class ProductsTable extends Table
         return $description;
     }
 
+    public function getStatus(EntityInterface $entity)
+    {
+        $status = '';
+
+        if ($entity->quantity <= 0) {
+            $status = 'ESGOTADO';
+        }
+
+        if ($entity->quantity >= 1) {
+            $status = 'DISPONIVEL';
+        }
+
+        if (!empty($entity->canceled)) {
+            $status = 'CANCELADO';
+        }
+
+        return $status;
+    }
+
     public function afterSave(EventInterface $event, EntityInterface $entity, ArrayObject $options)
     {
         if ($entity->isNew() && empty($entity->code)) {
             $entity->code = $entity->id;
+
+            $this->save($entity);
+        }
+
+        if ($entity->status != $this->getStatus($entity)) {
+            $entity->status = $this->getStatus($entity);
 
             $this->save($entity);
         }

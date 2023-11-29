@@ -1,16 +1,15 @@
 <div class="row">
-
     <div class="col-md-12">
-        <?= $this->element('action_index') ?>
-        <?= $this->element('edit_box', ['controller' => 'Sales', 'text' => 'Venda', 'entity' => $sale]) ?>
-        <?= $this->element('filter_box', ['controller' => 'Sales', 'text' => 'Vendas']) ?>
-        <?= $this->element('paid_box', ['controller' => 'Sales', 'text' => 'Venda', 'entity' => $sale]) ?>
         <table class="table table-hover no-margin">
             <tr>
                 <th>
-                    <h3> <i class="fa-solid fa-bag-shopping"></i> <?= ' ' . __('Venda') ?></h3>
+                    <h3><i class="fa-solid fa-bag-shopping"></i> <?= ' ' . __('Venda') ?></h3>
                 </th>
-                <th>
+                <th class="align-right">
+                    <?= $this->element('action_index') ?>
+                    <?= $this->element('edit_box', ['controller' => 'Sales', 'text' => 'Venda', 'entity' => $sale]) ?>
+                    <?= $this->element('filter_box', ['controller' => 'Sales', 'text' => 'Vendas']) ?>
+                    <?= $this->element('paid_box', ['controller' => 'Sales', 'text' => 'Venda', 'entity' => $sale]) ?>
                 </th>
             </tr>
             <tr>
@@ -54,7 +53,9 @@
 </div>
 <?= $this->element('logs', ['entity' => $sale]) ?>
 <h3><i class="fa-solid fa-money-bill"></i> <?= ' ' . __('Pagamentos') ?>
-    <?= $this->element('add_box', ['controller' => 'Payments', 'text' => 'Pagamento', 'parentEntityId' => $sale->id]) ?>
+    <div class="align-right">
+        <?= $this->element('add_box', ['controller' => 'Payments', 'text' => 'Pagamento', 'parentEntityId' => $sale->id]) ?>
+    </div>
 </h3>
 
 <table class="table table-hover no-margin">
@@ -64,8 +65,7 @@
         <th><?= __('Método') ?></th>
         <th><?= __('Parcelas') ?></th>
         <th><?= __('Situação') ?></th>
-        <th class="actions text-center"><?= __('Visualizar') ?></th>
-        <th class="actions text-center"><?= __('Deletar') ?></th>
+        <th class="actions text-center"><?= __('Ações') ?></th>
     </tr>
     <?php foreach ($sale->payments as $payment) : ?>
         <tr>
@@ -74,14 +74,18 @@
             <td><?= h($payment->method) ?></td>
             <td><?= h($payment->installments) ?></td>
             <td><?= $this->element('display_status', ['status' => $payment->status]) ?></td>
-            <?= $this->element('action_view', ['controller' => 'Payments', 'entity' => $payment]) ?>
-            <?= $this->element('action_delete', ['controller' => 'Payments', 'entity' => $payment]) ?>
+            <td class="actions text-center">
+                <?= $this->element('action_view', ['controller' => 'Payments', 'entity' => $payment]) ?>
+                <?= $this->element('action_delete', ['controller' => 'Payments', 'entity' => $payment]) ?>
+            </td>
         </tr>
     <?php endforeach; ?>
 </table>
 
 <h3> <i class="fa-solid fa-shirt"></i> <?= ' ' . __('Produtos da Venda') ?>
-    <?= $this->element('add_box', ['controller' => 'SaleProducts', 'text' => 'Produto da Venda', 'parentEntityId' => $sale->id]) ?>
+    <div class="align-right">
+        <?= $this->element('add_box', ['controller' => 'SaleProducts', 'text' => 'Produto da Venda', 'parentEntityId' => $sale->id]) ?>
+    </div>
 </h3>
 <table class="table table-hover no-margin">
     <tr>
@@ -91,7 +95,7 @@
         <th><?= __('Valor do Desconto') ?></th>
         <th><?= __('Valor Total') ?></th>
         <th><?= __('Status') ?></th>
-        <th class="actions text-center"><?= __('Deletar') ?></th>
+        <th class="actions text-center"><?= __('Ações') ?></th>
     </tr>
     <?php foreach ($saleProducts as $saleProduct) : ?>
         <tr>
@@ -101,7 +105,9 @@
             <td><?= h($saleProduct->discount_value) ?></td>
             <td><?= h($saleProduct->total_value) ?></td>
             <td><?= $this->element('display_status', ['status' => $saleProduct->status]) ?></td>
-            <?= $this->element('action_delete', ['controller' => 'SaleProducts', 'entity' => $saleProduct]) ?>
+            <td class="actions text-center">
+                <?= $this->element('action_delete', ['controller' => 'SaleProducts', 'entity' => $saleProduct]) ?>
+            </td>
         </tr>
     <?php endforeach; ?>
 </table>

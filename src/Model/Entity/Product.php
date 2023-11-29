@@ -23,7 +23,7 @@ class Product extends Entity
         'note' => true,
         'created' => true,
         'modified' => true,
-        'deleted' => true,
+        'canceled' => true,
         'status' => true,
         'sale_products' => true,
     ];
