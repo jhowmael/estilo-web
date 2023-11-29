@@ -1,15 +1,15 @@
 <div class="row">
     <div class="col-md-12">
-        <?= $this->element('action_index') ?>
-        <?= $this->element('delete_box', ['controller' => 'Products', 'text' => 'Produto', 'entity' => $product]) ?>
-        <?= $this->element('edit_box', ['controller' => 'Products', 'text' => 'Produto', 'entity' => $product]) ?>
-        <?= $this->element('filter_box', ['controller' => 'Products', 'text' => 'Produtos']) ?>
         <table class="table table-hover no-margin">
             <tr>
                 <th>
                     <h3> <i class="fa-solid fa-shirt"></i> <?= ' ' . __('Produto') ?></h3>
                 </th>
-                <th>
+                <th class="align-right">
+                    <?= $this->element('action_index') ?>
+                    <?= $this->element('cancel_box', ['controller' => 'Products', 'text' => 'Produto', 'entity' => $product]) ?>
+                    <?= $this->element('edit_box', ['controller' => 'Products', 'text' => 'Produto', 'entity' => $product]) ?>
+                    <?= $this->element('filter_box', ['controller' => 'Products', 'text' => 'Produtos']) ?>
                 </th>
             </tr>
             <tr>

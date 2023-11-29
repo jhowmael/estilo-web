@@ -26,13 +26,16 @@ class SaleProductsController extends AppController
         ])->first();
 
         $saleProducts = $this->SaleProducts->find('all', [
-            'conditions' => ['sale_id' => $saleId]
+            'conditions' => [
+                'sale_id' => $saleId
+            ]
         ])->toArray();
 
         $products = $this->SaleProducts->Products->find('list', [
             'keyField' => 'id',
-            'valueField' => 'description'
-        ]);
+            'valueField' => 'description',
+            'conditions' => ['status' => 'DISPONIVEL'],
+        ])->ToArray();
 
         $this->set('products', $products);
 

@@ -27,7 +27,16 @@ $installments = array(
 
 <div class="row">
     <div class="col-md-12">
-        <h3 class="mb-4"><?= $this->element('action_index') ?> <i class="fa-solid fa-money-bill"></i> <?= ' ' . __('Adicionar Pagamento') ?></h3>
+        <table class="table">
+            <tr>
+                <th>
+                    <h3 class="mb-4"><i class="fa-solid fa-money-bill"></i> <?= ' ' . __('Adicionar Pagamento') ?></h3>
+                </th>
+                <th class="align-right">
+                    <?= $this->element('action_index') ?>
+                </th>
+            </tr>
+        </table>
         <?= $this->Form->create($payment) ?>
         <div class="row">
             <div class="col-md-4">
@@ -56,8 +65,7 @@ $installments = array(
                 <th><?= __('Método') ?></th>
                 <th><?= __('Parcelas') ?></th>
                 <th><?= __('Situação') ?></th>
-                <th class="actions text-center"><?= __('Visualizar') ?></th>
-                <th class="actions text-center"><?= __('Deletar') ?></th>
+                <th class="actions text-center"><?= __('Ações') ?></th>
             </tr>
             <?php foreach ($payments as $payment) : ?>
                 <tr>
@@ -66,8 +74,10 @@ $installments = array(
                     <td><?= h($payment->method) ?></td>
                     <td><?= h($payment->installments) ?></td>
                     <td><?= $this->element('display_status', ['status' => $payment->status]) ?></td>
-                    <?= $this->element('action_view', ['controller' => 'Payments', 'entity' => $payment]) ?>
-                    <?= $this->element('action_delete', ['controller' => 'Payments', 'entity' => $payment]) ?>
+                    <td class="actions text-center">
+                        <?= $this->element('action_view', ['controller' => 'Payments', 'entity' => $payment]) ?>
+                        <?= $this->element('action_delete', ['controller' => 'Payments', 'entity' => $payment]) ?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </table>
@@ -81,7 +91,7 @@ $installments = array(
                 <th>
                     <h3> <i class="fa-solid fa-bag-shopping"></i> <?= ' ' . __('Venda') ?></h3>
                 </th>
-                <th>
+                <th class="align-right">
                     <?= $this->element('delete_box', ['controller' => 'Sales', 'text' => 'Venda', 'entity' => $sale]) ?>
                     <?= $this->element('edit_box', ['controller' => 'Sales', 'text' => 'Venda', 'entity' => $sale]) ?>
                     <?= $this->element('view_box', ['controller' => 'Sales', 'text' => 'Venda', 'entity' => $sale]) ?>

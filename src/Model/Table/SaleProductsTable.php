@@ -80,11 +80,22 @@ class SaleProductsTable extends Table
             return $this->save($entity);
         }
     }
+    public function getTotalValue(EntityInterface $entity)
+    {
+        $product = $this->Products->get($entity->product_id);
+
+        return $product->total_value - $entity->discount_value;
+    }
 
     public function afterSave(EventInterface $event, EntityInterface $entity, ArrayObject $options)
     {
         $this->Sales->updateValues($entity->sale_id);
-
         $this->updateStatus($entity);
+
+        if ($entity->total_value != $this->getTotalValue($entity)) {
+            $entity->total_value = $this->getTotalValue($entity);
+
+            $this->save($entity);
+        }
     }
 }

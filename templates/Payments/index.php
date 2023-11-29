@@ -1,8 +1,13 @@
-<?= $this->element('filter_box', ['controller' => 'Payments', 'text' => 'Pagamentos']) ?>
-
-<h3><i class="fa-solid fa-money-bill"></i> <?= ' ' . __('Pagamentos') ?></h3>
-
-
+<table class="table">
+    <tr>
+        <th>
+            <h3><i class="fa-solid fa-money-bill"></i> <?= ' ' . __('Pagamentos') ?></h3>
+        </th>
+        <th class="align-right">
+            <?= $this->element('filter_box', ['controller' => 'Payments', 'text' => 'Pagamentos']) ?>
+        </th>
+    </tr>
+</table>
 <div class="row">
     <div class="col-md-12">
         <table class="table table-hover no-margin">
@@ -26,7 +31,9 @@
                         <td><?= h($payment->method) ?></td>
                         <td><?= $this->Number->format($payment->installments) ?></td>
                         <td><?= $this->element('display_status', ['status' => $payment->status]) ?></td>
-                        <?= $this->element('action_view', ['controller' => 'Payments', 'entity' => $payment]) ?>
+                        <td class="actions text-center">
+                            <?= $this->element('action_view', ['controller' => 'Payments', 'entity' => $payment]) ?>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

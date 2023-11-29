@@ -1,10 +1,12 @@
 <div class="row">
     <div class="col-md-12">
-        <?= $this->element('action_index') ?>
-        <?= $this->element('filter_box', ['controller' => 'Payments', 'text' => 'Pagamento']) ?>
         <table class="table table-hover no-margin">
             <th>
                 <h3><i class="fa-solid fa-money-bill"></i> <?= ' ' . __('Pagamentos') ?></h3>
+            </th>
+            <th class="align-right">
+                <?= $this->element('action_index') ?>
+                <?= $this->element('filter_box', ['controller' => 'Payments', 'text' => 'Pagamento']) ?>
             </th>
             <th>
             </th>

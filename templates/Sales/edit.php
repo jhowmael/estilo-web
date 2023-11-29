@@ -1,6 +1,16 @@
+<table class="table">
+    <tr>
+        <th>
+            <h3> <i class="fa-solid fa-bag-shopping"></i> <?= ' ' . __('Editar Venda') ?></h3>
+        </th>
+        <th class="align-right">
+            <?= $this->element('action_index') ?>
+        </th>
+    </tr>
+</table>
+
 <div class="row">
     <div class="col-md-12">
-        <h3 class="mb-4"><?= $this->element('action_index') ?> <i class="fa-solid fa-bag-shopping"></i> <?= ' ' . __('Editar Venda') ?></h3>
         <?= $this->Form->create($sale) ?>
         <div class="row">
             <div class="col-md-6">

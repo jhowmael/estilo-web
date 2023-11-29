@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Cake\I18n\FrozenDate;
+use Cake\I18n\FrozenTime;
 
 class SalesController extends AppController
 {
@@ -35,6 +35,7 @@ class SalesController extends AppController
         if ($this->request->is('post')) {
             $sale = $this->Sales->patchEntity($sale, $this->request->getData());
             if ($this->Sales->save($sale)) {
+
                 $this->Flash->success(__('The sale has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -66,10 +67,10 @@ class SalesController extends AppController
         $sale = $this->Sales->get($id);
 
         if ($sale->status == 'AGUARDANDO CONFIRMAÇÃO') {
-            $sale->paid = FrozenDate::now();
+            $sale->paid = FrozenTime::now('America/Sao_Paulo');
 
             $this->Sales->save($sale);
-            $this->Flash->error(__('A venda foi Cobrada Com Sucesso.'));
+            $this->Flash->error(__('A Venda Foi Cobrada Com Sucesso.'));
         } else {
             $this->Flash->error(__('Não Foi Possível Cobrar a Venda'));
         }
@@ -83,7 +84,7 @@ class SalesController extends AppController
         $sale = $this->Sales->get($id);
 
         if ($sale->status != 'PAGO') {
-            $sale->canceled = FrozenDate::now();
+            $sale->canceled = FrozenTime::now();
 
             $this->Sales->save($sale);
             $this->Flash->error(__('A venda foi Canceleada Com Sucesso.'));

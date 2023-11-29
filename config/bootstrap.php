@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -76,6 +77,7 @@ use Cake\Utility\Security;
  * idea to create multiple configuration files, and separate the configuration
  * that changes from configuration that does not. This makes deployment simpler.
  */
+
 try {
     Configure::config('default', new PhpConfig());
     Configure::load('app', 'default', false);
@@ -106,7 +108,7 @@ if (Configure::read('debug')) {
  * Set the default server timezone. Using UTC makes time calculations / conversions easier.
  * Check https://php.net/manual/en/timezones.php for list of valid timezone strings.
  */
-date_default_timezone_set(Configure::read('App.defaultTimezone'));
+date_default_timezone_set('America/Sao_Paulo');
 
 /*
  * Configure the mbstring extension to use the correct encoding.

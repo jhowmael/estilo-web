@@ -80,7 +80,16 @@ $colors = array(
 
 <div class="row">
     <div class="col-md-12">
-        <h3 class="mb-4"><?= $this->element('action_index') ?> <i class="fa-solid fa-shirt"></i> <?= ' ' . __('Editar Produto') ?></h3>
+        <table class="table">
+            <tr>
+                <th>
+                    <h3 class="mb-4"> <i class="fa-solid fa-shirt"></i> <?= ' ' . __('Editar Produto') ?></h3>
+                </th>
+                <th class="align-right">
+                    <?= $this->element('action_index') ?>
+                </th>
+            </tr>
+        </table>
         <?= $this->Form->create($product) ?>
         <div class="row">
             <div class="col-md-12">
