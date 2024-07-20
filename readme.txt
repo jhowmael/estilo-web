@@ -1,0 +1,1 @@
+Welcome to the Estilo Web repository! This project is a complete store management system developed using CakePHP. Designed for clothing and accessory store owners, this platform aims to streamline and enhance business processes, providing a comprehensive solution for inventory control, sales management, performance tracking, and administrative tasks.
